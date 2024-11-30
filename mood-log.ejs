@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mood Log</title>
+  <!-- Include Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans text-gray-800">
+    <header class="bg-blue-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+          <h1 class="text-xl">Welcome, <%= user.name %></h1>
+          <a href="/logout" class="text-white">Logout</a>
+        </div>
+      </header>
+
+  <!-- Container for centering content -->
+  <div class="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md mt-8">
+    
+    <!-- Welcome Message -->
+    <h1 class="text-2xl font-semibold text-center mb-4">Welcome <%= user.username %>!</h1>
+    
+    <!-- Mood Log Section -->
+    
+    <!-- Mood Form -->
+   
+    
+      <main class="container mx-auto p-6">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Log Your Mood</h2>
+        
+        <!-- Mood Log Form -->
+        <form action="/mood-log" method="POST" class="bg-white p-6 rounded-lg shadow-md">
+          <div class="mb-4">
+            <label for="mood" class="block text-gray-700">How are you feeling today?</label>
+            <select name="mood" id="mood" class="mt-2 p-2 border border-gray-300 rounded-md w-full">
+              <option value="Happy">Happy</option>
+              <option value="Sad">Sad</option>
+              <option value="Excited">Excited</option>
+              <option value="Angry">Angry</option>
+              <option value="Stressed">Stressed</option>
+            </select>
+          </div>
+          <button type=" submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Submit Mood</button>
+        </form>
+      </main>
+    <% if (typeof recommendation !== 'undefined') { %>
+      <!-- Recommendation Section -->
+      <div class="mt-6">
+        <h3 class="text-lg font-semibold">Recommendation:</h3>
+        <p class="text-gray-700 mt-2"><%= recommendation %></p>
+      </div>
+    <% } %>
+
+    <!-- Navigation Links -->
+    <div class="mt-6 flex justify-between">
+      <a href="/mood-history" class="text-blue-500 hover:underline">View Mood History</a>
+      <a href="/" class="text-blue-500 hover:underline">Back to Home</a>
+    </div>
+
+  </div>
+
+</body>
+</html>

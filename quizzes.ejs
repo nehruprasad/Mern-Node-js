@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quizzes</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 font-sans p-6">
+
+  <!-- Navbar -->
+  <nav class="bg-indigo-600 p-4 shadow-lg mb-6">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-white text-xl font-bold">Quiz Time</h1>
+      <div class="space-x-4">
+        <a href="/" class="text-white font-medium hover:text-gray-200 transition-all duration-200">Home</a>
+        <a href="/logout" class="text-white font-medium hover:text-gray-200 transition-all duration-200">Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Content -->
+  <h1 class="text-2xl font-bold text-indigo-600">Quiz Time!</h1>
+  
+  <div id="timer" class="mt-2 text-red-600 font-bold">Time Left: 120s</div>
+
+  <form id="quiz-form" class="mt-6 space-y-6">
+    <!-- Questions will be inserted dynamically -->
+    <div id="questions-container"></div>
+
+    <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Submit</button>
+  </form>
+
+  <div id="result" class="mt-4 hidden text-gray-700"></div>
+
+  <script>
+    const questions = [
+      { question: "What is the color of the sky?", options: ["Blue", "Green", "Red"], correct: "Blue" },
+      { question: "How many hours are in a day?", options: ["12", "24", "48"], correct: "24" },
+      { question: "Which planet is known as the Red Planet?", options: ["Mars", "Venus", "Jupiter"], correct: "Mars" },
+      { question: "What is 5 + 5?", options: ["10", "11", "15"], correct: "10" },
+      { question: "What is the largest mammal?", options: ["Elephant", "Blue Whale", "Giraffe"], correct: "Blue Whale" },
+      { question: "Who wrote 'Romeo and Juliet'?", options: ["Shakespeare", "Hemingway", "Tolkien"], correct: "Shakespeare" },
+      { question: "What is the capital of France?", options: ["Paris", "London", "Berlin"], correct: "Paris" },
+      { question: "What is H2O commonly known as?", options: ["Water", "Oxygen", "Salt"], correct: "Water" },
+      { question: "Which gas do plants absorb?", options: ["Oxygen", "Carbon Dioxide", "Nitrogen"], correct: "Carbon Dioxide" },
+      { question: "What is 100 ÷ 10?", options: ["10", "20", "5"], correct: "10" },
+      { question: "Which ocean is the largest?", options: ["Atlantic", "Pacific", "Indian"], correct: "Pacific" },
+      { question: "How many continents are there?", options: ["5", "6", "7"], correct: "7" },
+      { question: "What is the boiling point of water in Celsius?", options: ["90", "100", "110"], correct: "100" },
+      { question: "Who painted the Mona Lisa?", options: ["Van Gogh", "Leonardo da Vinci", "Picasso"], correct: "Leonardo da Vinci" },
+      { question: "Which planet is closest to the sun?", options: ["Earth", "Venus", "Mercury"], correct: "Mercury" }
+    ];
+
+    const questionsContainer = document.getElementById('questions-container');
+    const timer = document.getElementById('timer');
+    let timeLeft = 120;
+
+    // Display questions
+    questions.forEach((q, index) => {
+      const questionDiv = document.createElement('div');
+      questionDiv.innerHTML = `
+        <p class="text-gray-800 font-medium">${index + 1}. ${q.question}</p>
+        ${q.options.map(opt => `
+          <label class="block">
+            <input type="radio" name="q${index}" value="${opt}" class="mr-2"> ${opt}
+          </label>
+        `).join('')}
+      `;
+      questionsContainer.appendChild(questionDiv);
+    });
+
+    // Timer
+    const countdown = setInterval(() => {
+      timeLeft--;
+      timer.textContent = `Time Left: ${timeLeft}s`;
+      if (timeLeft <= 0) {
+        clearInterval(countdown);
+        document.getElementById('quiz-form').submit();
+      }
+    }, 1000);
+
+    // Evaluate quiz
+    const form = document.getElementById('quiz-form');
+    const resultDiv = document.getElementById('result');
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      clearInterval(countdown);
+
+      let score = 0;
+      questions.forEach((q, index) => {
+        const answer = form[`q${index}`]?.value;
+        if (answer === q.correct) score++;
+      });
+
+      resultDiv.textContent = `Your score is ${score}/${questions.length}!`;
+      resultDiv.classList.remove('hidden');
+    });
+  </script>
+</body>
+</html>

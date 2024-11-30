@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sleep Tracker</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 font-sans p-6">
+
+  <!-- Navbar -->
+  <nav class="bg-blue-600 p-4 shadow-lg mb-6">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-white text-xl font-bold">Sleep Tracker</h1>
+      <div class="space-x-4">
+        <a href="/" class="text-white font-medium hover:text-gray-200 transition-all duration-200">Home</a>
+        <a href="/logout" class="text-white font-medium hover:text-gray-200 transition-all duration-200">Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Content -->
+  <h1 class="text-2xl font-bold text-blue-600">Sleep Tracker</h1>
+  <form id="sleep-form" class="mt-4 space-y-4">
+    <div>
+      <label for="sleep-date" class="block text-gray-700">Date:</label>
+      <input type="date" id="sleep-date" class="border rounded p-2 w-full">
+    </div>
+    <div>
+      <label for="hours-slept" class="block text-gray-700">Hours Slept:</label>
+      <input type="number" id="hours-slept" class="border rounded p-2 w-full" min="0" max="24">
+    </div>
+    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Log Sleep</button>
+  </form>
+
+  <div id="sleep-log" class="mt-6">
+    <h2 class="text-lg font-bold text-gray-800">Your Sleep Log:</h2>
+    <ul id="log-list" class="space-y-2 mt-2"></ul>
+  </div>
+
+  <script>
+    const sleepForm = document.getElementById('sleep-form');
+    const logList = document.getElementById('log-list');
+
+    sleepForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const date = document.getElementById('sleep-date').value;
+      const hours = document.getElementById('hours-slept').value;
+
+      if (date && hours) {
+        const listItem = document.createElement('li');
+        listItem.textContent = `Date: ${date}, Hours Slept: ${hours}`;
+        listItem.classList.add('text-gray-700');
+        logList.appendChild(listItem);
+      }
+    });
+  </script>
+
+</body>
+</html>

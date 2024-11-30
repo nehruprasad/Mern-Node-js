@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mood History</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+  <header class="bg-blue-600 text-white p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-xl">Mood History - <%= user.name %></h1>
+      <a href="/logout" class="text-white">Logout</a>
+    </div>
+  </header>
+
+  <main class="container mx-auto p-6">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Your Mood History</h2>
+
+    <% if (moods.length > 0) { %>
+      <ul class="space-y-4">
+        <% moods.forEach(mood => { %>
+          <li class="bg-white p-4 rounded-lg shadow-md flex justify-between items-center">
+            <span class="text-gray-700"><%= mood.mood %></span>
+            <span class="text-sm text-gray-500"><%= new Date(mood.date).toLocaleString() %></span>
+          </li>
+        <% }) %>
+      </ul>
+    <% } else { %>
+      <p class="text-gray-700">No mood logs found.</p>
+    <% } %>
+    
+    <a href="/mood-log" class="mt-6 inline-block bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Log New Mood</a>
+  </main>
+
+</body>
+</html>

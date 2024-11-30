@@ -1,0 +1,25 @@
+{
+  "name": "myproject",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.21.1",
+    "express-session": "^1.18.1",
+    "mysql2": "^3.11.4",
+    "nodemailer": "^6.9.16",
+    "openai": "^4.73.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.15"
+  }
+}

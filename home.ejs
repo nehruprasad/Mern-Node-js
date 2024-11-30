@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans leading-normal tracking-wide font-family: 'Helvetica', sans-serif;">
+
+  <!-- Navbar with unique gradient color -->
+  <nav class="bg-gradient-to-r from-teal-400 via-indigo-500 to-blue-600 p-4 shadow-lg">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <h1 class="text-white text-3xl font-bold">Mental Wellness Companion</h1>
+      <div class="relative group">
+        <button aria-label="Open navigation menu" class="text-white font-medium hover:text-blue-300 transition-all duration-300">
+          Menu
+        </button>
+        <!-- Dropdown Menu -->
+        <div class="dropdown-content absolute right-0 bg-white shadow-lg rounded-lg py-2 mt-2 hidden group-hover:block group-focus-within:block z-10">
+          <a href="/" class="block text-gray-700 hover:bg-gray-100 transition-all duration-200 py-2 px-4">Home</a>
+          <a href="/mood-log" class="block text-gray-700 hover:bg-gray-100 transition-all duration-200 py-2 px-4">Mood Log</a>
+          <a href="/mood-history" class="block text-gray-700 hover:bg-gray-100 transition-all duration-200 py-2 px-4">Mood History</a>
+          <a href="/stress-level" class="block text-gray-700 hover:bg-gray-100 transition-all duration-200 py-2 px-4">Stress Level</a>
+          <a href="/stress-history" class="block text-gray-700 hover:bg-gray-100 transition-all duration-200 py-2 px-4">Stress History</a>
+          <a href="/affirmations" class="block text-gray-700 hover:bg-gray-100 transition-all duration-200 py-2 px-4">Affirmations</a>
+          <a href="/affirmations-history" class="block text-gray-700 hover:bg-gray-100 transition-all duration-200 py-2 px-4">Affirmations History</a>
+          <a href="/settings" class="block text-gray-700 hover:bg-gray-100 transition-all duration-200 py-2 px-4">Settings</a>
+          <a href="/admin" class="block text-gray-700 hover:bg-gray-100 transition-all duration-200 py-2 px-4">Admin</a>
+          <a href="/progress" class="block text-gray-700 hover:bg-gray-100 transition-all duration-200 py-2 px-4">Progress</a>
+          <a href="/quizzes" class="block text-gray-700 hover:bg-gray-100 transition-all duration-200 py-2 px-4">Quizzes</a>
+          <a href="/mood-calendar" class="block text-gray-700 hover:bg-gray-100 transition-all duration-200 py-2 px-4">Mood Calendar</a>
+          <a href="/sleep-tracker" class="block text-gray-700 hover:bg-gray-100 transition-all duration-200 py-2 px-4">Sleep Tracker</a>
+          <a href="/chart" class="block text-gray-700 hover:bg-gray-100 transition-all duration-200 py-2 px-4">Chart</a>
+          <a href="/logout" class="block text-gray-700 hover:bg-gray-100 transition-all duration-200 py-2 px-4">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content Area -->
+  <main class="max-w-4xl mx-auto py-10 px-4 sm:px-6 lg:px-8 space-y-8">
+    <h3 class="text-2xl font-semibold text-gray-800">Explore Your Mental Wellness Journey</h3>
+    <p class="text-lg text-gray-700">Dive deeper into the features designed to help you maintain mental health and well-being. Take a moment to explore:</p>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 space-y-4">
+      <div class="bg-white shadow-md rounded-lg p-6 hover:shadow-xl transition-shadow duration-300">
+        <h4 class="text-xl font-semibold text-teal-600 mb-3">Daily Mood Tracking</h4>
+        <p class="text-gray-600">Log your daily mood and reflect on your emotional patterns.</p>
+        <a href="/mood-log" class="text-blue-500 hover:underline">Track Mood</a>
+      </div>
+      <div class="bg-white shadow-md rounded-lg p-6 hover:shadow-xl transition-shadow duration-300">
+        <h4 class="text-xl font-semibold text-teal-600 mb-3">Stress Level Tracking</h4>
+        <p class="text-gray-600">Monitor and manage your stress levels effectively.</p>
+        <a href="/stress-level" class="text-blue-500 hover:underline">Track Stress</a>
+      </div>
+      <div class="bg-white shadow-md rounded-lg p-6 hover:shadow-xl transition-shadow duration-300">
+        <h4 class="text-xl font-semibold text-teal-600 mb-3">Daily Affirmations</h4>
+        <p class="text-gray-600">Empower yourself with positive affirmations each day.</p>
+        <a href="/affirmations" class="text-blue-500 hover:underline">Get Affirmations</a>
+      </div>
+      <div class="bg-white shadow-md rounded-lg p-6 hover:shadow-xl transition-shadow duration-300">
+        <h4 class="text-xl font-semibold text-teal-600 mb-3">Track Your Progress</h4>
+        <p class="text-gray-600">Stay motivated by tracking your mental wellness progress.</p>
+        <a href="/progress" class="text-blue-500 hover:underline">Track Progress</a>
+      </div>
+      <div class="bg-white shadow-md rounded-lg p-6 hover:shadow-xl transition-shadow duration-300">
+        <h4 class="text-xl font-semibold text-teal-600 mb-3">Mental Wellness Quizzes</h4>
+        <p class="text-gray-600">Take quizzes to better understand your mental health.</p>
+        <a href="/quizzes" class="text-blue-500 hover:underline">Take Quiz</a>
+      </div>
+      <div class="bg-white shadow-md rounded-lg p-6 hover:shadow-xl transition-shadow duration-300">
+        <h4 class="text-xl font-semibold text-teal-600 mb-3">Sleep Tracker</h4>
+        <p class="text-gray-600">Track your sleep patterns for better mental and physical health.</p>
+        <a href="/sleep-tracker" class="text-blue-500 hover:underline">Track Sleep</a>
+      </div>
+      <div class="bg-white shadow-md rounded-lg p-6 hover:shadow-xl transition-shadow duration-300">
+        <h4 class="text-xl font-semibold text-teal-600 mb-3">Breathing Exercises</h4>
+        <p class="text-gray-600">Practice breathing techniques to reduce stress and stay focused.</p>
+        <a href="/breathing" class="text-blue-500 hover:underline">Start Breathing</a>
+      </div>
+      <div class="bg-white shadow-md rounded-lg p-6 hover:shadow-xl transition-shadow duration-300">
+        <h4 class="text-xl font-semibold text-teal-600 mb-3">Running</h4>
+        <p class="text-gray-600">Set goals for running and stay active for better mental health.</p>
+        <a href="/running" class="text-blue-500 hover:underline">Explore Running</a>
+      </div>
+      <div class="bg-white shadow-md rounded-lg p-6 hover:shadow-xl transition-shadow duration-300">
+        <h4 class="text-xl font-semibold text-teal-600 mb-3">Admin Dashboard</h4>
+        <p class="text-gray-600">For administrators to manage users and content.</p>
+        <a href="/admin" class="text-blue-500 hover:underline">Go to Admin</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gradient-to-r from-indigo-800 to-blue-900 text-white py-6">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex flex-wrap justify-between items-center">
+        <h2 class="font-semibold text-xl">Mental Wellness Companion</h2>
+        <div class="space-x-4 mt-2 sm:mt-0">
+          <a href="#" class="text-gray-300 hover:text-white transition-all duration-300">Privacy Policy</a>
+          <a href="#" class="text-gray-300 hover:text-white transition-all duration-300">Terms of Service</a>
+        </div>
+      </div>
+      <p class="mt-4 text-center text-gray-400 text-sm">© 2024 Mental Wellness Companion. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

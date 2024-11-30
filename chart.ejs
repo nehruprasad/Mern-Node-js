@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Charts</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-50 font-sans p-6">
+
+  <!-- Navbar -->
+  <nav class="bg-green-600 p-4 shadow-lg mb-6">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-white text-xl font-bold">Your Statistics</h1>
+      <div class="space-x-4">
+        <a href="/" class="text-white font-medium hover:text-gray-200 transition-all duration-200">Home</a>
+        <a href="/logout" class="text-white font-medium hover:text-gray-200 transition-all duration-200">Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Content -->
+  <h2 class="text-lg font-semibold text-gray-700">Enter Hours Slept for Each Day</h2>
+
+  <!-- Form to input hours for each day -->
+  <form id="sleep-form" class="mt-4 space-y-4">
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <label for="monday" class="block text-gray-700">Monday:</label>
+        <input type="number" id="monday" class="border rounded p-2 w-full" min="0" max="24">
+      </div>
+      <div>
+        <label for="tuesday" class="block text-gray-700">Tuesday:</label>
+        <input type="number" id="tuesday" class="border rounded p-2 w-full" min="0" max="24">
+      </div>
+      <div>
+        <label for="wednesday" class="block text-gray-700">Wednesday:</label>
+        <input type="number" id="wednesday" class="border rounded p-2 w-full" min="0" max="24">
+      </div>
+      <div>
+        <label for="thursday" class="block text-gray-700">Thursday:</label>
+        <input type="number" id="thursday" class="border rounded p-2 w-full" min="0" max="24">
+      </div>
+      <div>
+        <label for="friday" class="block text-gray-700">Friday:</label>
+        <input type="number" id="friday" class="border rounded p-2 w-full" min="0" max="24">
+      </div>
+      <div>
+        <label for="saturday" class="block text-gray-700">Saturday:</label>
+        <input type="number" id="saturday" class="border rounded p-2 w-full" min="0" max="24">
+      </div>
+      <div>
+        <label for="sunday" class="block text-gray-700">Sunday:</label>
+        <input type="number" id="sunday" class="border rounded p-2 w-full" min="0" max="24">
+      </div>
+    </div>
+
+    <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 mt-4">Generate Chart</button>
+  </form>
+
+  <!-- Chart Display -->
+  <canvas id="myChart" class="mt-6"></canvas>
+
+  <script>
+    const sleepForm = document.getElementById('sleep-form');
+    const myChartCanvas = document.getElementById('myChart').getContext('2d');
+    let myChart;
+
+    // Handle form submission and generate chart
+    sleepForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      // Get user input for each day
+      const monday = parseInt(document.getElementById('monday').value) || 0;
+      const tuesday = parseInt(document.getElementById('tuesday').value) || 0;
+      const wednesday = parseInt(document.getElementById('wednesday').value) || 0;
+      const thursday = parseInt(document.getElementById('thursday').value) || 0;
+      const friday = parseInt(document.getElementById('friday').value) || 0;
+      const saturday = parseInt(document.getElementById('saturday').value) || 0;
+      const sunday = parseInt(document.getElementById('sunday').value) || 0;
+
+      // If a chart already exists, destroy it to recreate with new data
+      if (myChart) {
+        myChart.destroy();
+      }
+
+      // Create a new chart
+      myChart = new Chart(myChartCanvas, {
+        type: 'bar',
+        data: {
+          labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+          datasets: [{
+            label: 'Hours Slept',
+            data: [monday, tuesday, wednesday, thursday, friday, saturday, sunday],
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

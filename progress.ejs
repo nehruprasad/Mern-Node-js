@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progress Tracker</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 font-sans p-6">
+
+  <!-- Navbar -->
+  <nav class="bg-teal-600 p-4 shadow-lg mb-6">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-white text-xl font-bold">Progress Tracker</h1>
+      <div class="space-x-4">
+        <a href="/" class="text-white font-medium hover:text-gray-200 transition-all duration-200">Home</a>
+        <a href="/logout" class="text-white font-medium hover:text-gray-200 transition-all duration-200">Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Content -->
+  <h1 class="text-2xl font-bold text-teal-600">Progress Tracker</h1>
+  <div class="mt-4">
+    <h2 class="text-lg text-gray-700">Your Current Progress</h2>
+    <div class="bg-gray-300 rounded-full h-6 w-full mt-2">
+      <div id="progress-bar" class="bg-teal-600 h-6 rounded-full text-white text-sm flex items-center justify-center" style="width: 0%;">0%</div>
+    </div>
+    <div id="task-list" class="mt-4 space-y-2"></div>
+
+    <form id="add-task-form" class="mt-4 flex space-x-4">
+      <input id="task-input" type="text" placeholder="Add a new task" class="border rounded p-2 flex-1">
+      <button type="submit" class="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-700">Add Task</button>
+    </form>
+  </div>
+
+  <script>
+    const progressBar = document.getElementById('progress-bar');
+    const taskList = document.getElementById('task-list');
+    const taskInput = document.getElementById('task-input');
+    const addTaskForm = document.getElementById('add-task-form');
+    let tasks = [];
+    let completedTasks = 0;
+
+    // Add task
+    addTaskForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const taskText = taskInput.value.trim();
+      if (taskText) {
+        tasks.push({ text: taskText, completed: false });
+        taskInput.value = '';
+        renderTasks();
+        updateProgress();
+      }
+    });
+
+    // Render tasks
+    function renderTasks() {
+      taskList.innerHTML = '';
+      tasks.forEach((task, index) => {
+        const taskDiv = document.createElement('div');
+        taskDiv.className = 'flex items-center justify-between border p-2 rounded';
+        taskDiv.innerHTML = `
+          <span class="${task.completed ? 'line-through text-gray-500' : 'text-gray-700'}">${task.text}</span>
+          <button class="text-teal-600 hover:underline" onclick="toggleTask(${index})">${task.completed ? 'Undo' : 'Complete'}</button>
+        `;
+        taskList.appendChild(taskDiv);
+      });
+    }
+
+    // Toggle task completion
+    function toggleTask(index) {
+      tasks[index].completed = !tasks[index].completed;
+      completedTasks = tasks.filter(task => task.completed).length;
+      renderTasks();
+      updateProgress();
+    }
+
+    // Update progress bar
+    function updateProgress() {
+      const progress = tasks.length > 0 ? (completedTasks / tasks.length) * 100 : 0;
+      progressBar.style.width = `${progress}%`;
+      progressBar.textContent = `${Math.round(progress)}%`;
+    }
+  </script>
+</body>
+</html>
